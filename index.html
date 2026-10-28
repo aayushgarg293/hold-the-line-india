@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#c6e0ee">
-<title>Stateio India</title>
+<title>Hold the Line: India</title>
 <meta name="description" content="Invaders are pouring across the borders. Send your troops, take back every state and defend India in this fast map-conquest game.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Stateio India — Defend every state">
+<meta property="og:title" content="Hold the Line: India — Defend every state">
 <meta property="og:description" content="Invaders are pouring across the borders. Send your troops, take back every state and defend India.">
 <meta property="og:url" content="https://aayushgarg293.github.io/stateio-india/">
 <meta property="og:image" content="https://aayushgarg293.github.io/stateio-india/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Stateio India — Defend every state">
+<meta name="twitter:title" content="Hold the Line: India — Defend every state">
 <meta name="twitter:description" content="Invaders are pouring across the borders. Send your troops, take back every state and defend India.">
 <meta name="twitter:image" content="https://aayushgarg293.github.io/stateio-india/og.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232e9bf0'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M32 14v36M14 32h36M19.3 19.3l25.4 25.4M44.7 19.3L19.3 44.7' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='4.5' fill='white'/%3E%3C/svg%3E">
@@ -603,8 +603,8 @@ body.danger #danger { animation:danger 1s ease-in-out infinite; }
 <!-- START -->
 <div class="overlay" id="start-scr" style="display:none">
   <div class="card">
-    <h1>Stateio India</h1>
-    <div class="tag">Defend every state</div>
+    <h1>Hold the Line</h1>
+    <div class="tag">India · Defend every state</div>
     <div class="desc">
       Invaders are pouring across the borders.<br>
       Drag from your circle to another circle to send your troops.
@@ -2632,9 +2632,9 @@ function drawShareCard(stars, secs) {
 
   // ── Top panel: title and ribbon ──
   panel(40, 36, W - 80, 170);
-  g.font = '700 96' + FONT;
-  g.fillStyle = '#1b6fb8'; g.fillText('Stateio India', W / 2, 128);
-  g.fillStyle = '#2e9bf0'; g.fillText('Stateio India', W / 2, 121);
+  g.font = '700 84' + FONT;
+  g.fillStyle = '#1b6fb8'; g.fillText('Hold the Line: India', W / 2, 128);
+  g.fillStyle = '#2e9bf0'; g.fillText('Hold the Line: India', W / 2, 121);
 
   const ribbon = level === LEVELS.length - 1 ? 'Bharat is safe!' : 'Territory secured!';
   g.font = '700 46' + FONT;
@@ -2690,9 +2690,9 @@ function prepareShare(won, stars, secs) {
     c.toBlob(blob => {
       if (!blob || id !== runId) return;
       shareBlob = blob;
-      shareName = 'stateio-india-level-' + (level + 1) + '.png';
+      shareName = 'hold-the-line-india-level-' + (level + 1) + '.png';
       shareText = 'I secured ' + LV.name + ' in ' + fmtTime(secs) + ' with ' + stars +
-                  (stars === 1 ? ' star' : ' stars') + ' on Stateio India. Can you defend every state?';
+                  (stars === 1 ? ' star' : ' stars') + ' on Hold the Line: India. Can you defend every state?';
       if (shareLink) URL.revokeObjectURL(shareLink);
       shareLink = URL.createObjectURL(blob);
       $('share-img').src = shareLink;
@@ -2736,7 +2736,7 @@ function saveShare() {
 async function sendShare() {
   if (!shareBlob) return;
   try {
-    await navigator.share({ files: [shareFile()], title: 'Stateio India', text: shareText + ' ' + SHARE_URL });
+    await navigator.share({ files: [shareFile()], title: 'Hold the Line: India', text: shareText + ' ' + SHARE_URL });
   } catch (e) {
     if (!e || e.name !== 'AbortError') blip('sh-send', 'Could not send');   // AbortError = sheet closed
   }
