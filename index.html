@@ -345,6 +345,25 @@ body.ingame #top-ui { display:flex; }
 .btn.sm.warn:active { box-shadow:0 2px 0 var(--red-d); }
 .row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:16px; }
 .tip { margin-top:16px; font-size:12px; font-weight:500; color:#b0b5ba; }
+/* Buy Me a Coffee link, in the site's own yellow */
+.coffee {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-top:16px;
+  padding:8px 16px;
+  border-radius:999px;
+  background:#ffdd00;
+  color:#000;
+  font-size:14px;
+  font-weight:600;
+  text-decoration:none;
+  box-shadow:0 3px 0 #c9ad00;
+  transition:transform .08s, box-shadow .08s;
+}
+.coffee:active { transform:translateY(2px); box-shadow:0 1px 0 #c9ad00; }
+.coffee.big { font-size:17px; padding:11px 22px; box-shadow:0 4px 0 #c9ad00; }
+#res-thanks { display:none; margin-top:18px; font-size:14px; font-weight:500; color:#5a6066; }
 
 /* ── Result card ───────────────────────────────────── */
 .ribbon {
@@ -594,6 +613,7 @@ body.danger #danger { animation:danger 1s ease-in-out infinite; }
     <button class="btn block" id="start-btn">Play</button>
     <button class="btn sm ghost" id="levels-btn">Levels</button>
     <div class="tip">Drive every invader out to win the level</div>
+    <a class="coffee" href="https://www.buymeacoffee.com/aayushgarg" target="_blank" rel="noopener">☕ Buy me a coffee</a>
   </div>
 </div>
 
@@ -640,6 +660,8 @@ body.danger #danger { animation:danger 1s ease-in-out infinite; }
       <button class="btn sm ghost" id="retry-btn">Retry</button>
       <button class="btn sm ghost" id="r-levels">Levels</button>
     </div>
+    <p id="res-thanks">You defended every state. If you enjoyed the game, a coffee keeps new levels coming.</p>
+    <a class="coffee" id="res-coffee" href="https://www.buymeacoffee.com/aayushgarg" target="_blank" rel="noopener">☕ Buy me a coffee</a>
   </div>
 </div>
 
@@ -2498,6 +2520,10 @@ function showResult(won, stars, secs, best) {
     else startLevel(level + 1);
   };
   $('retry-btn').style.display = won ? '' : 'none';
+  // Beating the final level gets a thank-you and a bigger coffee button
+  const finale = won && lastLevel;
+  $('res-thanks').style.display = finale ? 'block' : 'none';
+  $('res-coffee').classList.toggle('big', finale);
   prepareShare(won, stars, secs);
   show('res-scr');
 }
