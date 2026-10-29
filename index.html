@@ -368,6 +368,10 @@ body.ingame #top-ui { display:flex; }
 }
 .coffee:active { transform:translateY(2px); box-shadow:0 1px 0 #c9ad00; }
 .coffee.big { font-size:17px; padding:11px 22px; box-shadow:0 4px 0 #c9ad00; }
+/* Players in India get a chai button that goes to Razorpay instead */
+.coffee.chai { background:#f2c48d; color:#3b2412; box-shadow:0 3px 0 #b9864d; }
+.coffee.chai:active { box-shadow:0 1px 0 #b9864d; }
+.coffee.chai.big { box-shadow:0 4px 0 #b9864d; }
 #res-thanks { display:none; margin-top:18px; font-size:14px; font-weight:500; color:#5a6066; }
 
 /* ── Result card ───────────────────────────────────── */
@@ -665,7 +669,7 @@ body.danger #danger { animation:danger 1s ease-in-out infinite; }
       <button class="btn sm ghost" id="retry-btn">Retry</button>
       <button class="btn sm ghost" id="r-levels">Levels</button>
     </div>
-    <p id="res-thanks">You defended every state. If you enjoyed the game, a coffee keeps new levels coming.</p>
+    <p id="res-thanks">You defended every state. If you enjoyed the game, a <span class="tip-drink">coffee</span> keeps new levels coming.</p>
     <a class="coffee" id="res-coffee" href="https://www.buymeacoffee.com/aayushgarg" target="_blank" rel="noopener">☕ Buy me a coffee</a>
   </div>
 </div>
@@ -2791,6 +2795,20 @@ window.addEventListener('resize', onResize);
 // ══════════════════════════════════════════════════════
 
 loadMap();
+
+// Tips: players in India (by their device's time zone) are offered a chai
+// through Razorpay, everyone else a coffee through Buy Me a Coffee
+(function () {
+  let tz = '';
+  try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { /* unknown */ }
+  if (tz !== 'Asia/Kolkata' && tz !== 'Asia/Calcutta') return;
+  document.querySelectorAll('.coffee').forEach(a => {
+    a.href = 'https://rzp.io/rzp/aayushgarg2903';
+    a.textContent = '☕ Buy me a chai';
+    a.classList.add('chai');
+  });
+  document.querySelectorAll('.tip-drink').forEach(el => { el.textContent = 'chai'; });
+})();
 
 // Keep a copy for offline play (only possible when served over http/https,
 // so opening the file directly still works as before)

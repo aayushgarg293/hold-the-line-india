@@ -42,4 +42,5 @@ python3 -m http.server
 Map of India from [Simplemaps](https://simplemaps.com).
 
 If you enjoy the game, you can
+[buy me a chai](https://rzp.io/rzp/aayushgarg2903) (India, via Razorpay) or
 [buy me a coffee](https://www.buymeacoffee.com/aayushgarg) ☕
